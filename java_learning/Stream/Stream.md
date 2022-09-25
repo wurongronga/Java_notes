@@ -21,5 +21,24 @@ stream结构
 stream流的常见生成方式  
 
 - collection can use the default method stream() `defaultStream<E> stream()`
-- Map体系的集合间接的生成流
+  - `Stream<String> listStream = llist.stream()`
+- Map体系的集合间接的生成流 
+  - `Map<String, Integer> map = new HashMap<String,Integer>()`
+  - map.keySet().stream(): 键对应的流 `Stream<String> = map.keySet().stream()`
+  - map.values().stream(): 值对应的流 `Stream<Integer> = map.values().stream()`
+  - map.entrySet().stream(): 键值对对应的流 `Stream<Map.Entry<String,Integer>> = map.entrySet().stream()`
 - 数组可以通过Stream借口的静态方法of(T...values)生成流
+  - `String[] strArray = {"hello","world","java"}`
+  - `Stream<String> strArrayStream = Stream.of(strArray)`
+  - `Stream<String> strArrayStream2 = Stream.of("hello","world","java")`
+
+## 1.3 stream中间流操作  
+
+- `Stream<T> filter(Predicate predicate)`: Predicate 接口中的方法 - boolean test(T t) 对制定参数进行判断，返回一个布尔值
+- `Stream<T> limit(long maxSize)`: 返回此流中的元素组成的流，节去前制定参数个数的数据
+- `Stream<T> skip(long n)`: 跳过置顶参数个数的数据，返回由该流的剩余元素组成的流
+- `Static<T> Stream<T> concat(Stream a, Stream b)`: 合并a和b两个流
+- `Stream<T> distinct()`: 返回由该流的不同元素组成的流 （根据Objectequals(Object)）组成的流
+- `Stream<T> sorted()`: 返回由此流的元素组成的流，根据自然顺序排序
+- `Stream<T> sorted(Comparator comparator)`: 返回由该流的元素组成的流，根据comparator进行排序
+
