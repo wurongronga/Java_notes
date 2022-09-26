@@ -22,7 +22,7 @@ stream流的常见生成方式
 
 - collection can use the default method stream() `defaultStream<E> stream()`
   - `Stream<String> listStream = llist.stream()`
-- Map体系的集合间接的生成流 
+- Map体系的集合间接的生成流
   - `Map<String, Integer> map = new HashMap<String,Integer>()`
   - map.keySet().stream(): 键对应的流 `Stream<String> = map.keySet().stream()`
   - map.values().stream(): 值对应的流 `Stream<Integer> = map.values().stream()`
@@ -41,4 +41,11 @@ stream流的常见生成方式
 - `Stream<T> distinct()`: 返回由该流的不同元素组成的流 （根据Objectequals(Object)）组成的流
 - `Stream<T> sorted()`: 返回由此流的元素组成的流，根据自然顺序排序
 - `Stream<T> sorted(Comparator comparator)`: 返回由该流的元素组成的流，根据comparator进行排序
+- `Stream<R> map (FUnction mapper)`: 返回由给定函数应用于此流的元素的结果组成的流， Function借口中的方法， R apply(T t)
+- `IntStream mapToInt(ToIntFunction mapper)`: 返回一个IntStream其中包含将给定函数应用于此流元素的结果, IntStream 表示原始 int流， ToIntFunction接口中的方法 int applyAsInt(T value)
+  - IntStream中的 sum() 返回此流中元素的和，方法非常有用且只存在IntStream而不是Stream中
 
+## 1.4 stream流的终结操作方法
+
+- `void forEach(Consumer action)`: 对此流的每个元素执行操作， Consumer接口中的方法，void accept(T t): 对制定的参数执行此操作
+- `long count()`: 返回此流中的元素数 
